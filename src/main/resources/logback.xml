@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Logback Configuration.  -->
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+
+    <property name="logPath" value="/usr/local/output/prediction/web"/>
+    <property name="logLevel" value="INFO"/>
+
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern><![CDATA[
+%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] - %X{method} %X{requestURIWithQueryString} [ip=%X{remoteHost}, ref=%X{referrer}, ua=%X{userAgent}, sid=%X{cookie.JSESSIONID}]  %-5level %logger{35} - %m%n
+            ]]></pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+     <appender name="INFO_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/web-info.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<FileNamePattern>${logPath}/web-info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>90</maxHistory>
+		</rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern><![CDATA[
+%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] - %X{method} %X{requestURIWithQueryString} [ip=%X{remoteHost}, ref=%X{referrer}, ua=%X{userAgent}, sid=%X{cookie.JSESSIONID}]  %-5level %logger{35} - %m%n
+            ]]></pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        
+    </appender>
+
+    <appender name="WARN_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/web-warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${logPath}/web-warn.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern><![CDATA[
+%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] - %X{method} %X{requestURIWithQueryString} [ip=%X{remoteHost}, ref=%X{referrer}, ua=%X{userAgent}, sid=%X{cookie.JSESSIONID}]  %-5level %logger{35} - %m%n
+            ]]></pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+
+    </appender>
+     
+     
+     <appender name="ERROR_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/web-error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${logPath}/web-error.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern><![CDATA[
+%n%-4r [%d{yyyy-MM-dd HH:mm:ss}] - %X{method} %X{requestURIWithQueryString} [ip=%X{remoteHost}, ref=%X{referrer}, ua=%X{userAgent}, sid=%X{cookie.JSESSIONID}] %-5level %logger{35} - %m%n
+            ]]></pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <logger name="java.sql" level="INFO" />
+
+    <logger name="org.nutz.dao" level="INFO" />
+
+    <logger name="org.springframework.orm" level="INFO" />
+
+    <logger name="com.iterror.course" level="${logLevel}" />
+
+    <logger name="org.springframework" level="${logLevel}" />
+
+
+    <root>
+    	<level value="${logLevel}" />
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ERROR_LOG" />
+        <appender-ref ref="INFO_LOG"/>
+        <appender-ref ref="WARN_LOG"/>
+    </root>
+</configuration>
