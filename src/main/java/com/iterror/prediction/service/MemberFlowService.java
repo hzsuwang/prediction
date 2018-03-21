@@ -10,5 +10,5 @@ public interface MemberFlowService {
     /**
      * @param memberFlowDO
      */
-    public void addSysSendMember(MemberFlowDO memberFlowDO);
+    public void addMemberFlow(MemberFlowDO memberFlowDO);
 }

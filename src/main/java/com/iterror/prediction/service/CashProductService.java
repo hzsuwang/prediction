@@ -14,7 +14,7 @@ public interface CashProductService {
      * @param cashProduct
      * @return
      */
-    public long createCashProduct(CashProductDO cashProduct);
+    public CashProductDO createCashProduct(CashProductDO cashProduct);
 
     /**
      * 更新支付产品

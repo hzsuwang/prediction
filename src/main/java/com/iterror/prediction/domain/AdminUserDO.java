@@ -11,7 +11,7 @@ import org.nutz.dao.entity.annotation.Table;
 @Comment("充值记录表")
 public class AdminUserDO extends BaseDO {
 
-    @Column("userName")
+    @Column("user_name")
     @Comment("用户名")
     private String userName;
 
@@ -19,7 +19,7 @@ public class AdminUserDO extends BaseDO {
     @Comment("密码")
     private String password;
 
-    @Column("userMark")
+    @Column("user_mark")
     @Comment("用户备注")
     private String userMark;
 

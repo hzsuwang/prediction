@@ -27,4 +27,9 @@ public class MemberDO extends BaseDO {
     @Column("use_num")
     @Comment("使用次数")
     private int useNum;
+
+    public boolean isValid() {
+        Date nowTime = new Date();
+        return this.getExpiredTime().getTime() > nowTime.getTime() && this.getExpiredTime().getTime() <= nowTime.getTime();
+    }
 }
