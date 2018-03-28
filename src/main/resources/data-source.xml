@@ -55,7 +55,7 @@
     <!-- 我们使用基于注解的Transaction管理, 参考http://www.cnblogs.com/xusir/p/3650522.html -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
-    <bean id="dao" class="org.nutz.dao.impl.NutDao">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="dao" class="com.iterror.prediction.common.dao.BaseDAO">
+        <property name="druidDataSource" ref="dataSource"/>
     </bean>
 </beans>

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Map;
 
 @Controller
+@RequestMapping("admin/main")
 public class IndexController extends BaseController {
 
 
@@ -22,7 +23,7 @@ public class IndexController extends BaseController {
 
         user.put("description", "一代枭雄");
         model.addAttribute("user", user);
-        return "index";
+        return "/admin/main/index";
     }
 
 }

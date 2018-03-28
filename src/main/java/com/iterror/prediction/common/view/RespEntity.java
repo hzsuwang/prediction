@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by tony.yan on 2018/1/2.
  */
 @Data
-public class RespEntity {
+public class RespEntity implements java.io.Serializable{
 
     /**
      * 返回码
@@ -24,7 +24,7 @@ public class RespEntity {
     private Object data;
 
     public RespEntity(){
-        this(RespCode.SUCCESS);
+        this(RespCode.GLOBAL_SUCCESS);
     }
 
     public RespEntity(RespCode respCode) {
@@ -43,7 +43,7 @@ public class RespEntity {
     }
 
     public RespEntity(Object data) {
-        this(RespCode.SUCCESS);
+        this(RespCode.GLOBAL_SUCCESS);
         this.data = data;
     }
 
@@ -51,13 +51,13 @@ public class RespEntity {
      * @return
      */
     public static RespEntity success(Object data) {
-        RespEntity baseResult = new RespEntity(RespCode.SUCCESS);
+        RespEntity baseResult = new RespEntity(RespCode.GLOBAL_SUCCESS);
         baseResult.setData(data);
         return baseResult;
     }
 
     public static RespEntity success() {
-        return new RespEntity(RespCode.SUCCESS);
+        return new RespEntity(RespCode.GLOBAL_SUCCESS);
     }
 
     /**

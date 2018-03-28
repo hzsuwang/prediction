@@ -1,4 +1,4 @@
-package com.iterror.course.common.base.view;
+package com.iterror.prediction.common.view;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by tony.yan on 2018/1/10.
  */
 @Data
-public class BaseReqEntity {
+public class BaseReqEntity implements java.io.Serializable{
 
     private long   uid;    // 当前用户id
     private String sid;    // 当前用户sid

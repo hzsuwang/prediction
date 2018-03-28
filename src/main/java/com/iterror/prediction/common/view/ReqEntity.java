@@ -6,9 +6,9 @@ import lombok.Data;
  * Created by tony.yan on 2018/1/10.
  */
 @Data
-public class ReqEntity {
+public class ReqEntity implements java.io.Serializable{
 
-    private com.iterror.course.common.base.view.BaseReqEntity base;
+    private BaseReqEntity base;
     private long          t;    // 请求时间
     private String        sign; // 签名值
 }
